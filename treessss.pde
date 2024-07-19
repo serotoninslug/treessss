@@ -6,7 +6,7 @@ float r;
 float g;
 float b;
 int o=0;
-PImage[] trees;
+PImage[] trees = new PImage[3];
 
 
 void setup() {
@@ -17,9 +17,16 @@ void setup() {
 
   // Display the image
   image(img, 0, 0);
+  
+  // Load the images into the array
+  trees[0] = loadImage("sass.png"); //Sassafras albidum
+  trees[1] = loadImage("betula.png"); //Betula nigra
+  trees[2] = loadImage("pinus.png"); //Pinus rigida
+  //noLoop();
 }
 
 void draw() {
+  //fill(255);
   fill(255, o);
   o+=5;
   noStroke();
@@ -32,9 +39,8 @@ void draw() {
       b = blue(c); // Extract the blue component
       if ((r<100) && (g>75) && (b<100)) {
         tint(255, int(random(128)));
-        PImage sass = loadImage("sass.png"); //Sassafras albidum
         imageMode(CENTER);
-        image(sass, x, y, 100, 150);
+        image(trees[int(random(3))], x, y, 100, 150);
       }
     }
   }
