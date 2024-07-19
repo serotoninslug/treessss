@@ -9,7 +9,7 @@ float b;
 
 
 void setup() {
-  size(1000, 1000);
+  size(800, 800);
   img = loadImage("atlantagreen.jpg"); // Load image
   img.loadPixels(); // Load the pixel data of the image
   loadPixels(); // Load the pixel data of the display window
@@ -28,8 +28,8 @@ void setup() {
 void draw() {
   fill(255);
   rect(0,0,width,height);
-  for (y=0; y<height; y+=10) {
-    for (x=0; x<width; x+=10) {
+  for (y=0; y<height; y+=20) {
+    for (x=0; x<width; x+=20) {
       c = img.get(x, y); // Get the color of the pixel at (x, y)
       r = red(c); // Extract the red component
       g = green(c); // Extract the green component
