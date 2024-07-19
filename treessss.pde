@@ -6,14 +6,13 @@ float r;
 float g;
 float b;
 int o=0;
-PImage[] trees = new PImage[3];
+PImage[] trees = new PImage[3]; //my sketches
 
 
 void setup() {
   size(800, 800);
-  img = loadImage("atlantagreen.jpg"); // Load image
-  img.loadPixels(); // Load the pixel data of the image
-  loadPixels(); // Load the pixel data of the display window
+  img = loadImage("atlantagreen.jpg"); // load background image
+  img.loadPixels(); // load pixel data of background image
 
   // Display the image
   image(img, 0, 0);
@@ -28,15 +27,15 @@ void setup() {
 void draw() {
   //fill(255);
   fill(255, o);
-  o+=5;
+  o+=5; //fade in white background
   noStroke();
   rect(0, 0, width, height);
   for (y=0; y<height; y+=20) {
     for (x=0; x<width; x+=20) {
-      c = img.get(x, y); // Get the color of the pixel at (x, y)
-      r = red(c); // Extract the red component
-      g = green(c); // Extract the green component
-      b = blue(c); // Extract the blue component
+      c = img.get(x, y); // get color of the pixel at (x, y)
+      r = red(c); // extract red component
+      g = green(c); // extract green component
+      b = blue(c); // extract blue component
       if ((r<100) && (g>75) && (b<100)) {
         tint(255, int(random(128)));
         imageMode(CENTER);
