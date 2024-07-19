@@ -1,6 +1,6 @@
 PImage img;
-int x;
-int y;
+int x=0;
+int y=0;
 color c;
 float r;
 float g;
@@ -17,8 +17,8 @@ void setup() {
   // Display the image
   image(img, 0, 0);
 
-  x = 500; // X coordinate of the pixel
-  y = 570; // Y coordinate of the pixel
+  x +=10; // X coordinate of the pixel
+  y +=10; // Y coordinate of the pixel
 
   c = img.get(x, y); // Get the color of the pixel at (x, y)
   r = red(c); // Extract the red component
