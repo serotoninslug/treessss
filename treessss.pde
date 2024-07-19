@@ -26,6 +26,8 @@ void setup() {
 }
 
 void draw() {
+  fill(255);
+  rect(0,0,width,height);
   for (y=0; y<height; y+=10) {
     for (x=0; x<width; x+=10) {
       c = img.get(x, y); // Get the color of the pixel at (x, y)
@@ -33,7 +35,7 @@ void draw() {
       g = green(c); // Extract the green component
       b = blue(c); // Extract the blue component
       if ((g-b)>30) {
-        
+        tint(255, int(random(128)));
         PImage sass = loadImage("sass.png"); // Load image
         imageMode(CENTER);
         image(sass, x, y, 100, 150);
