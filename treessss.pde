@@ -5,6 +5,7 @@ color c;
 float r;
 float g;
 float b;
+int o=0;
 
 
 
@@ -22,11 +23,12 @@ void setup() {
 
   // Print the RGB values
   //println("Pixel at (" + x + ", " + y + ") - R: " + r + " G: " + g + " B: " + b);
-  noLoop();
+
 }
 
 void draw() {
-  fill(255);
+  fill(255,o);
+  o+=5;
   rect(0,0,width,height);
   for (y=0; y<height; y+=20) {
     for (x=0; x<width; x+=20) {
