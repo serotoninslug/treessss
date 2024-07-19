@@ -6,7 +6,7 @@ float r;
 float g;
 float b;
 int o=0;
-
+PImage[] trees;
 
 
 void setup() {
@@ -17,28 +17,22 @@ void setup() {
 
   // Display the image
   image(img, 0, 0);
-
-
-
-
-  // Print the RGB values
-  //println("Pixel at (" + x + ", " + y + ") - R: " + r + " G: " + g + " B: " + b);
-
 }
 
 void draw() {
-  fill(255,o);
+  fill(255, o);
   o+=5;
-  rect(0,0,width,height);
+  noStroke();
+  rect(0, 0, width, height);
   for (y=0; y<height; y+=20) {
     for (x=0; x<width; x+=20) {
       c = img.get(x, y); // Get the color of the pixel at (x, y)
       r = red(c); // Extract the red component
       g = green(c); // Extract the green component
       b = blue(c); // Extract the blue component
-      if ((g-b)>30) {
+      if ((r<100) && (g>75) && (b<100)) {
         tint(255, int(random(128)));
-        PImage sass = loadImage("sass.png"); // Load image
+        PImage sass = loadImage("sass.png"); //Sassafras albidum
         imageMode(CENTER);
         image(sass, x, y, 100, 150);
       }
