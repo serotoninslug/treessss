@@ -17,22 +17,27 @@ void setup() {
   // Display the image
   image(img, 0, 0);
 
-  x +=10; // X coordinate of the pixel
-  y +=10; // Y coordinate of the pixel
 
-  c = img.get(x, y); // Get the color of the pixel at (x, y)
-  r = red(c); // Extract the red component
-  g = green(c); // Extract the green component
-  b = blue(c); // Extract the blue component
+
 
   // Print the RGB values
-  println("Pixel at (" + x + ", " + y + ") - R: " + r + " G: " + g + " B: " + b);
+  //println("Pixel at (" + x + ", " + y + ") - R: " + r + " G: " + g + " B: " + b);
+  noLoop();
 }
 
 void draw() {
-  if ((g-b)>30) {
-    PImage sass = loadImage("sass.png"); // Load image
-    imageMode(CENTER);
-    image(sass, x, y,100,150);
+  for (y=0; y<height; y+=10) {
+    for (x=0; x<width; x+=10) {
+      c = img.get(x, y); // Get the color of the pixel at (x, y)
+      r = red(c); // Extract the red component
+      g = green(c); // Extract the green component
+      b = blue(c); // Extract the blue component
+      if ((g-b)>30) {
+        
+        PImage sass = loadImage("sass.png"); // Load image
+        imageMode(CENTER);
+        image(sass, x, y, 100, 150);
+      }
+    }
   }
 }
