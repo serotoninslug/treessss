@@ -7,20 +7,24 @@ float g;
 float b;
 int o=0;
 PImage[] trees = new PImage[3]; //my sketches
-PImage[] backgrounds = new PImage[2]; // array to hold background images
+PImage[] backgrounds = new PImage[8]; // array to hold background images
 int bgIndex = 0; // index to keep track of the current background image
+boolean loopRunning = true; // variable to track loop state
 
 
 void setup() {
   size(800, 800);
-  frameRate(30);
+  frameRate(25);
 
   // load background images
-  backgrounds[0] = loadImage("atlantagreen.jpg");
-  backgrounds[1] = loadImage("vienna.jpg");
-  //backgrounds[2] = loadImage("vienna.jpg");
-  //backgrounds[3] = loadImage("vienna.jpg");
-  //backgrounds[4] = loadImage("vienna.jpg");
+  backgrounds[0] = loadImage("vienna.jpg");
+  backgrounds[1] = loadImage("mq.png");
+  backgrounds[2] = loadImage("cage.png");
+  backgrounds[3] = loadImage("bench.png");
+  backgrounds[4] = loadImage("koi.png");
+  backgrounds[5] = loadImage("fountain.jpg");
+  backgrounds[6] = loadImage("kiss.png");
+  backgrounds[7] = loadImage("soph.jpg");
 
   // set initial background image
   img = backgrounds[bgIndex];
@@ -57,12 +61,23 @@ void mousePressed() {
   if (bgIndex>=backgrounds.length) {
     bgIndex=0;
   }
-  
+
   fill(255);
-  rect(0,0,width,height);
+  rect(0, 0, width, height);
   img = backgrounds[bgIndex];
   image(img, width/2, height/2, width, height);
   o=0;
+}
+
+void keyPressed() {
+  if (key == ' ') { // toggle loop on space key press
+    loopRunning = !loopRunning;
+    if (loopRunning) {
+      loop();
+    } else {
+      noLoop();
+    }
+  }
 }
 
 void fadeToWhite() {
@@ -76,7 +91,7 @@ void fadeToWhite() {
 void drawTrees() {
   img = backgrounds[bgIndex];
   img.loadPixels();
-  
+
   for (y=0; y<height; y+=30) {
     for (x=0; x<width; x+=30) {
       c = img.get(x, y); // get color of the pixel at (x, y)
