@@ -7,7 +7,7 @@ float g;
 float b;
 int o=0;
 PImage[] trees = new PImage[3]; //my sketches
-PImage[] backgrounds = new PImage[8]; // array to hold background images
+PImage[] backgrounds = new PImage[7]; // array to hold background images
 int bgIndex = 0; // index to keep track of the current background image
 boolean loopRunning = true; // variable to track loop state
 
@@ -22,9 +22,8 @@ void setup() {
   backgrounds[2] = loadImage("cage.png");
   backgrounds[3] = loadImage("bench.png");
   backgrounds[4] = loadImage("koi.png");
-  backgrounds[5] = loadImage("fountain.jpg");
-  backgrounds[6] = loadImage("kiss.png");
-  backgrounds[7] = loadImage("soph.jpg");
+  backgrounds[5] = loadImage("kiss.png");
+  backgrounds[6] = loadImage("soph.jpg");
 
   // set initial background image
   img = backgrounds[bgIndex];
@@ -40,28 +39,30 @@ void setup() {
 }
 
 void draw() {
-  // update the background image
-  //img = backgrounds[bgIndex];
-  //img.loadPixels();
-  //image(img, 0, 0);
-
   fadeToWhite();
 
 
   //draw trees
   drawTrees();
+
+  //show background behind if key pressed (not space bar)
+  if (keyPressed && key != ' ') {
+    image(img, width/2, height/2, width, height);
+  }
 }
 
 
 
 
 void mousePressed() {
-  // cycle through background images
-  bgIndex = (bgIndex + 1);
-  if (bgIndex>=backgrounds.length) {
-    bgIndex=0;
+  // cycle through background images left v right
+  if (mouseX > width / 2) {
+    bgIndex = (bgIndex + 1) % backgrounds.length;
+  } else {
+    bgIndex = (bgIndex - 1 + backgrounds.length) % backgrounds.length;
   }
 
+  //redraw background fading to white
   fill(255);
   rect(0, 0, width, height);
   img = backgrounds[bgIndex];
