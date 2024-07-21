@@ -26,7 +26,7 @@ void setup() {
   backgrounds[4] = loadImage("koi.png");
   backgrounds[5] = loadImage("kiss.png");
   backgrounds[6] = loadImage("soph.jpg");
-  
+
   // load instruction screen image
   instructions = loadImage("instructions.png");
 
@@ -49,17 +49,17 @@ void draw() {
     image(instructions, width / 2, height / 2, width, height);
     noFill();
     strokeWeight(1.5);
-    rect(708,588,60,30);
+    rect(708, 588, 60, 30);
   } else {
     fadeToWhite();
-  
-  //draw trees
-  drawTrees();
 
-  //show background behind if key pressed (not space bar)
-  if (keyPressed && key != ' ') {
-    image(img, width/2, height/2, width, height);
-  }
+    //draw trees
+    drawTrees();
+
+    //show background behind if key pressed (not space bar)
+    if (keyPressed && key != ' ') {
+      image(img, width/2, height/2, width, height);
+    }
   }
 }
 
@@ -68,20 +68,22 @@ void draw() {
 
 void mousePressed() {
   // cycle through background images left v right
-  if (mouseX > width / 2) {
-    bgIndex = (bgIndex + 1) % backgrounds.length;
-  } else {
-    bgIndex = (bgIndex - 1 + backgrounds.length) % backgrounds.length;
+  if (intro==false) {
+    if (mouseX > width / 2) {
+      bgIndex = (bgIndex + 1) % backgrounds.length;
+    } else {
+      bgIndex = (bgIndex - 1 + backgrounds.length) % backgrounds.length;
+    }
+
+    //redraw background fading to white
+    fill(255);
+    rect(0, 0, width, height);
+    img = backgrounds[bgIndex];
+    image(img, width/2, height/2, width, height);
+    o=0;
   }
 
-  //redraw background fading to white
-  fill(255);
-  rect(0, 0, width, height);
-  img = backgrounds[bgIndex];
-  image(img, width/2, height/2, width, height);
-  o=0;
-  
-  if (intro==true && mouseX>708 && mouseX<768 && mouseY>588 && mouseY<618){
+  if (intro==true && mouseX>708 && mouseX<768 && mouseY>588 && mouseY<618) {
     intro=false;
   }
 }
